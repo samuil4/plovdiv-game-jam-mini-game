@@ -1,0 +1,33 @@
+<section class="sq-app sq">
+  <app-nav></app-nav>
+  <div class="sq-grid css-grid auto-col-width">
+
+    <section class="section primary col">
+      <header>
+        <h2>Star our repo :) </h2>
+      </header> 
+      <div>
+        <p>http://bit.ly/ng-sq-ui-repo</p>
+        <img src="assets/qr-code.png" alt="qr code">
+      </div>
+    </section>
+  
+    <section class="section primary col">
+      <header>
+        <h2>Check if you win</h2>
+      </header> 
+      <div>
+        <form [formGroup]="checkWinnerForm" (ngSubmit)="onSubmit()">
+          <section>
+            <sq-input formControlName="username" controlLabel="Username" controlPlaceholder="Type your github username" type="text">
+            </sq-input>
+          </section>
+          <sq-button [disabled]="checkWinnerForm.invalid" type="submit">Check</sq-button>
+        </form>
+      </div>
+    </section>
+  </div>
+  
+</section>
+
+
