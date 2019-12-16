@@ -1,4 +1,4 @@
-<section class="sq-app sq">
+<div class="sq-app sq">
   <app-nav></app-nav>
   <div class="sq-grid css-grid auto-col-width">
 
@@ -14,7 +14,7 @@
   
     <section class="section primary col">
       <header>
-        <h2>Check if you win</h2>
+        <h2>Get a mistery reward</h2>
       </header> 
       <div>
         <form [formGroup]="checkWinnerForm" (ngSubmit)="onSubmit()">
@@ -22,12 +22,98 @@
             <sq-input formControlName="username" controlLabel="Username" controlPlaceholder="Type your github username" type="text">
             </sq-input>
           </section>
-          <sq-button [disabled]="checkWinnerForm.invalid" type="submit">Check</sq-button>
+          <sq-button [disabled]="checkWinnerForm.invalid" type="submit">Get reward</sq-button>
         </form>
       </div>
     </section>
   </div>
+
+  <div>
+    <section class="section primary col">
+      <app-collapse-content title="Statistics" id="statistics" [isCollapsed]="false">
+        <div sq-collapse-body>
+          <div class="sq-grid css-grid auto-col-width">
+            <section class="section primary col">
+              <header>
+                <h4>All users - {{ starred.length }}</h4>
+              </header> 
+              <ul>
+                <li *ngFor="let user of starred">
+                  {{ user.username }}
+                </li>
+              </ul>
+            </section>
+            <section class="section primary col">
+              <header>
+                <h4>All claimed - {{ winners.length }}</h4>
+              </header>
+              <ul>
+                <li *ngFor="let user of winners">
+                  {{ user.username }}
+                </li>
+              </ul>
+            </section>
+          </div>
+          <sq-button  type="button" (click)="loadData()">Refresh statistics</sq-button>
+        </div>
+      </app-collapse-content>
+    </section>
+  </div>
+
+  <sq-modal [(show)]="showAlreadyClaimedModal">
+    <div sq-modal-title>
+      <strong>Thanks for supporting our work!</strong>
+    </div>
+
+    <div sq-modal-body>
+      <p> 
+        It seems you have claimed a mistery reward.<br>
+        You can still get some free game stickers :)
+      </p>
+      <iframe src="https://giphy.com/embed/osjgQPWRx3cac" width="290" height="290" frameBorder="0" class="giphy-embed"></iframe>
+    </div>
+
+    <div sq-modal-footer>
+      <button type="button" (click)="onCloseAlreadyClaimedModalClick()">
+        <span class="inner">Close</span>
+      </button>
+    </div>
+  </sq-modal>
+
+  <sq-modal [(show)]="showClaimModal">
+    <div sq-modal-title>
+      <strong>Thanks for supporting our work!</strong>
+    </div>
+
+    <div sq-modal-body>
+      <p>You can draw a mistery reward from the mistery bag :)</p>
+      <iframe src="https://giphy.com/embed/osjgQPWRx3cac" width="290" height="290" frameBorder="0" class="giphy-embed"></iframe>
+    </div>
+
+    <div sq-modal-footer>
+      <button type="button" (click)="onCloseClaimModalClick()">
+        <span class="inner">Close</span>
+      </button>
+    </div>
+  </sq-modal>
+
+  <sq-modal [(show)]="showNotStarredModal">
+    <div sq-modal-title>
+      <strong>No star found?</strong>
+    </div>
+
+    <div sq-modal-body>
+      <p>You can do it! Just star our repo and get a mistery gift :)</p>
+      <iframe src="https://giphy.com/embed/xT9DPIBYf0pAviBLzO" width="290" height="290" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    </div>
+
+    <div sq-modal-footer>
+      <button type="button" (click)="onCloseNotStarredModalClick()">
+        <span class="inner">Close</span>
+      </button>
+    </div>
+  </sq-modal>
   
-</section>
+</div>
 
 
