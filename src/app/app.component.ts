@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log(this.checkWinnerForm.value);
     if (this.checkWinnerForm.value.username) {
       const username = this.checkWinnerForm.value.username;
       this.loadData().add(() => {
@@ -63,7 +62,6 @@ export class AppComponent implements OnInit {
       this.starred = data;
     });
   }
-
   public onCloseAlreadyClaimedModalClick() {
     this.showAlreadyClaimedModal = false;
   }
